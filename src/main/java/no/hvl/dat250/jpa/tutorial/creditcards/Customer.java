@@ -27,13 +27,25 @@ public class Customer {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Collection<Address> getAddresses() {
         // DONE: implement method!
         return addresses;
     }
 
+    public void setAddresses(Collection<Address> addresses) {  // Corrected the parameter name
+        this.addresses = addresses;
+    }
+
     public Collection<CreditCard> getCreditCards() {
         // DONE: implement method!
         return creditCards;
+    }
+
+    public void setCreditCards(Collection<CreditCard> creditCards) {  // Corrected parameter name
+        this.creditCards = creditCards;
     }
 }

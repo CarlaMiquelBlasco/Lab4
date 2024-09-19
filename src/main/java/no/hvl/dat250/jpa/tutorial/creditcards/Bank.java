@@ -23,6 +23,10 @@ public class Bank {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Collection<CreditCard> getOwnedCards() {
         // DONE: implement method!
         return ownedCards;

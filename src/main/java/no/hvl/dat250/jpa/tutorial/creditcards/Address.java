@@ -20,13 +20,25 @@ public class Address {
         return street;
     }
 
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
     public Integer getNumber() {
         // DONE: implement method!
         return number;
     }
 
+    public void setNumber(Integer number) {
+        this.number = number;
+    }
+
     public Collection<Customer> getOwners() {
         // DONE: implement method!
         return owners;
+    }
+
+    public void setOwners(Collection<Customer> owners) {
+        this.owners = owners;
     }
 }
