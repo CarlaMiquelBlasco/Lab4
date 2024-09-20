@@ -1,6 +1,6 @@
 package no.hvl.dat250.jpa.tutorial.creditcards;
 
-import java.util.Collection;
+import java.util.Set;
 import jakarta.persistence.*;
 
 @Entity
@@ -10,17 +10,17 @@ public class Customer {
     private Long id;
     private String name;
 
-    @ManyToMany
+    @ManyToMany //(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(name = "customer_address",
             joinColumns = @JoinColumn(name = "customer_id"),
-            inverseJoinColumns = @JoinColumn(name = "address_id"))
-    private Collection<Address> addresses;
+            inverseJoinColumns = @JoinColumn(name = "address_id")) ///Explicit Join Table for convenience, although it is automatically created
+    private Set<Address> addresses;
 
-    @ManyToMany
+    @ManyToMany //(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(name = "customer_creditcard",
             joinColumns = @JoinColumn(name = "customer_id"),
-            inverseJoinColumns = @JoinColumn(name = "creditcard_id"))
-    private Collection<CreditCard> creditCards;
+            inverseJoinColumns = @JoinColumn(name = "creditcard_id")) //Explicit Join Table for convenience, although it is automatically created
+    private Set<CreditCard> creditCards;
 
     public String getName() {
         // DONE: implement method!
@@ -31,21 +31,21 @@ public class Customer {
         this.name = name;
     }
 
-    public Collection<Address> getAddresses() {
+    public Set<Address> getAddresses() {
         // DONE: implement method!
         return addresses;
     }
 
-    public void setAddresses(Collection<Address> addresses) {  // Corrected the parameter name
+    public void setAddresses(Set<Address> addresses) {  // Corrected the parameter name
         this.addresses = addresses;
     }
 
-    public Collection<CreditCard> getCreditCards() {
+    public Set<CreditCard> getCreditCards() {
         // DONE: implement method!
         return creditCards;
     }
 
-    public void setCreditCards(Collection<CreditCard> creditCards) {  // Corrected parameter name
+    public void setCreditCards(Set<CreditCard> creditCards) {  // Corrected parameter name
         this.creditCards = creditCards;
     }
 }

@@ -2,6 +2,7 @@ package no.hvl.dat250.jpa.tutorial.creditcards;
 
 import java.util.Collection;
 import jakarta.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Address {
@@ -12,8 +13,8 @@ public class Address {
     private String street;
     private Integer number;
 
-    @ManyToMany(mappedBy = "addresses")
-    private Collection<Customer> owners;
+    @ManyToMany(mappedBy = "addresses", fetch = FetchType.EAGER)
+    private Set<Customer> owners;
 
     public String getStreet() {
         // DONE: implement method!
@@ -33,12 +34,12 @@ public class Address {
         this.number = number;
     }
 
-    public Collection<Customer> getOwners() {
+    public Set<Customer> getOwners() {
         // DONE: implement method!
         return owners;
     }
 
-    public void setOwners(Collection<Customer> owners) {
+    public void setOwners(Set<Customer> owners) {
         this.owners = owners;
     }
 }

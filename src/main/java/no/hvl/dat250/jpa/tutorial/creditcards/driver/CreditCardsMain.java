@@ -8,12 +8,13 @@ import no.hvl.dat250.jpa.tutorial.creditcards.Address;
 import no.hvl.dat250.jpa.tutorial.creditcards.Bank;
 import no.hvl.dat250.jpa.tutorial.creditcards.CreditCard;
 import no.hvl.dat250.jpa.tutorial.creditcards.Pincode;
-import java.util.List;
+import java.util.Set;
 
 
 public class CreditCardsMain {
 
   static final String PERSISTENCE_UNIT_NAME = "jpa-tutorial";
+
 
   public static void main(String[] args) {
     try (EntityManagerFactory factory = Persistence.createEntityManagerFactory(
@@ -26,7 +27,7 @@ public class CreditCardsMain {
   }
 
   private static void createObjects(EntityManager em) {
-    // TODO: Create object world as shown in the README.md.
+    // DONE: Create object world as shown in the README.md.
     // Create Customer
     Customer customer = new Customer();
     customer.setName("Max Mustermann");
@@ -37,8 +38,8 @@ public class CreditCardsMain {
     address.setNumber(28);
 
     // Link Address to Customer (ManyToMany)
-    customer.setAddresses(List.of(address)); // Set in customer
-    address.setOwners(List.of(customer));    // Set in address
+    customer.setAddresses(Set.of(address)); // Set in customer
+    address.setOwners(Set.of(customer));    // Set in address
 
     // Create Pincode (shared by both CreditCards)
     Pincode pincode = new Pincode();
@@ -66,7 +67,7 @@ public class CreditCardsMain {
     creditCard2.setOwningBank(bank);  // Same bank as creditCard1
 
     // Link CreditCards to Customer (ManyToMany)
-    customer.setCreditCards(List.of(creditCard1, creditCard2));
+    customer.setCreditCards(Set.of(creditCard1, creditCard2));
 
     // Persist all entities
     em.persist(customer);   // Customer is the owning side, persist customer and all cascades

@@ -24,6 +24,11 @@ implements the JPA specification, making it easier to map Java objects to relati
         <class>no.hvl.dat250.jpa.tutorial.relationshipexample.Person</class>
         <class>no.hvl.dat250.jpa.tutorial.relationshipexample.Family</class>
         <class>no.hvl.dat250.jpa.tutorial.relationshipexample.Job</class>
+        <class>no.hvl.dat250.jpa.tutorial.creditcards.Customer</class>
+        <class>no.hvl.dat250.jpa.tutorial.creditcards.Address</class>
+        <class>no.hvl.dat250.jpa.tutorial.creditcards.CreditCard</class>
+        <class>no.hvl.dat250.jpa.tutorial.creditcards.Pincode</class>
+        <class>no.hvl.dat250.jpa.tutorial.creditcards.Bank</class>
 <!--
 class: This element explicitly declares an entity class (T0D0) that Hibernate will map to a database table.
 In this case, no.hvl.dat250.jpa.tutorial.basicexample.T0D0 is an entity class, meaning it corresponds to a table in the database.
@@ -53,7 +58,7 @@ keeps the database open even if no active connections are available (which is us
 simple, local application, the connection pool is kept small. For production, this number would be much higher to
 handle more concurrent database connections.
 -->
-            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
 <!-- hibernate.show_sql=false: Disables showing SQL statements in the console during runtime. Setting this to true would
 display the generated SQL statements, which can be useful for debugging.
@@ -67,6 +72,7 @@ application runs. This is useful for development and testing, but in production 
 to update (for modifying existing tables without dropping them) or validate (to ensure the schema matches but without
 making changes)
 -->
+            <property name="webAllowOthers" value="true"/>
         </properties>
     </persistence-unit>
 </persistence>
