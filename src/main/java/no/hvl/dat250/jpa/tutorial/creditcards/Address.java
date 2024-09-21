@@ -1,6 +1,5 @@
 package no.hvl.dat250.jpa.tutorial.creditcards;
 
-import java.util.Collection;
 import jakarta.persistence.*;
 import java.util.Set;
 
@@ -13,7 +12,7 @@ public class Address {
     private String street;
     private Integer number;
 
-    @ManyToMany(mappedBy = "addresses", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "addresses")
     private Set<Customer> owners;
 
     public String getStreet() {

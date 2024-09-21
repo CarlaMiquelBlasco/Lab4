@@ -2,11 +2,11 @@
 
 ## 1. Technical Problems Encountered and Resolutions
 
-The step where I got most stuck was **inspecting the tables and diagrams**. Initially, I tried accessing the database via `localhost:8082/h2-console`, but I couldn't get the page to load or the H2 console to work correctly.
+The step where I got most stuck was **inspecting the tables and diagrams of the database**. Initially, I tried accessing the database via `localhost:8082`, but I couldn't get the page to load or the H2 console to work correctly.
 
 Finally, I decided to use **IntelliJ IDEA's database visualization tool**, and this worked perfectly (see point 3 for more details).
 
-Additionally, I encountered two test failures:
+Additionally, I encountered two test failures that I had to resolve:
 - **Test 1**: `assertEquals(address.getOwners(), Set.of(customer));`
 - **Test 2**: `assertEquals(bank.getOwnedCards(), Set.of(firstCard, secondCard));`
 
@@ -18,7 +18,7 @@ Both tests were failing because I had originally defined the relationship collec
 
 You can find the code for Experiment 2 in the following repository:
 
-[GitHub Repository - Experiment 2](#)
+[GitHub Repository - Experiment 2](https://github.com/CarlaMiquelBlasco/dat250-jpa-tutorial/tree/master/src/main/java/no/hvl/dat250/jpa/tutorial/creditcards)
 
 ### 2.1. Explain the Used Database and How/When It Runs
 
@@ -94,5 +94,5 @@ Here are the key tables that were created:
 There are no major unresolved issues with this assignment. However, here are some areas for improvement:
 
 - **Inspecting Database**: Find a way to inspect and modify Database from localhost url
-- **Further Steps**: Explore more advanced querying and management of the database and consider further testing to ensure that all entity relationships are working as expected, especially in more complex scenarios.
+- **Explore querying and testing**: Explore more advanced querying and management of the database and consider further testing to ensure that all entity relationships are working as expected, especially in more complex scenarios.
 
