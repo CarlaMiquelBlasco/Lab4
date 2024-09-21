@@ -18,7 +18,7 @@ Both tests were failing because I had originally defined the relationship collec
 
 You can find the code for Experiment 2 in the following repository:
 
-[GitHub Repository - Experiment 2](https://github.com/CarlaMiquelBlasco/dat250-jpa-tutorial/tree/master/src/main/java/no/hvl/dat250/jpa/tutorial/creditcards)
+[GitHub Repository - Experiment 2](https://github.com/CarlaMiquelBlasco/Lab4/tree/master/src/main/java/no/hvl/dat250/jpa/tutorial/creditcards)
 
 ### 2.1. Explain the Used Database and How/When It Runs
 
