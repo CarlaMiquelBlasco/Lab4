@@ -11,15 +11,15 @@ public class Customer {
     private String name;
 
     @ManyToMany //(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    @JoinTable(name = "customer_address",
+    @JoinTable(name = "customer_addres",
             joinColumns = @JoinColumn(name = "customer_id"),
             inverseJoinColumns = @JoinColumn(name = "address_id")) ///Explicit Join Table for convenience, although it is automatically created
     private Set<Address> addresses;
 
     @ManyToMany //(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    @JoinTable(name = "customer_creditcard",
-            joinColumns = @JoinColumn(name = "customer_id"),
-            inverseJoinColumns = @JoinColumn(name = "creditcard_id")) //Explicit Join Table for convenience, although it is automatically created
+   // @JoinTable(name = "customer_creditcard",
+   //         joinColumns = @JoinColumn(name = "customer_id"),
+   //         inverseJoinColumns = @JoinColumn(name = "creditcard_id")) //Explicit Join Table for convenience, although it is automatically created
     private Set<CreditCard> creditCards;
 
     public String getName() {
