@@ -1,25 +1,25 @@
 <persistence xmlns="https://jakarta.ee/xml/ns/persistence"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
-  version="3.0">
-<!--
-xmlns: This specifies the XML namespace for the persistence descriptor, which is part of the Jakarta Persistence API (formerly JPA in Java EE).
-version="3.0": Specifies the version of the JPA specification being used. Version 3.0 is based on the Jakarta EE 9 platform
--->
+             version="3.0">
+    <!--
+    xmlns: This specifies the XML namespace for the persistence descriptor, which is part of the Jakarta Persistence API (formerly JPA in Java EE).
+    version="3.0": Specifies the version of the JPA specification being used. Version 3.0 is based on the Jakarta EE 9 platform
+    -->
     <persistence-unit name="jpa-tutorial" transaction-type="RESOURCE_LOCAL">
-<!--
-- persistence-unit name="jpa-tutorial": Defines a persistence unit named "jpa-tutorial". A persistence unit represents
-the set of all classes that can be managed by EntityManager in a JPA environment. This unit is used to configure the
-entity mappings and database connections.
-- transaction-type="RESOURCE_LOCAL": Specifies that the application will manage transactions manually (resource-local).
-This is typically used for standalone applications that do not run in a Java EE or Jakarta EE container (such as a web
-or application server). If this was a container-managed transaction, the value would be JTA
--->
+        <!--
+        - persistence-unit name="jpa-tutorial": Defines a persistence unit named "jpa-tutorial". A persistence unit represents
+        the set of all classes that can be managed by EntityManager in a JPA environment. This unit is used to configure the
+        entity mappings and database connections.
+        - transaction-type="RESOURCE_LOCAL": Specifies that the application will manage transactions manually (resource-local).
+        This is typically used for standalone applications that do not run in a Java EE or Jakarta EE container (such as a web
+        or application server). If this was a container-managed transaction, the value would be JTA
+        -->
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-<!--
-This specifies Hibernate as the JPA provider. Hibernate is a popular ORM (Object Relational Mapping) tool that
-implements the JPA specification, making it easier to map Java objects to relational databases.
--->
+        <!--
+        This specifies Hibernate as the JPA provider. Hibernate is a popular ORM (Object Relational Mapping) tool that
+        implements the JPA specification, making it easier to map Java objects to relational databases.
+        -->
         <class>no.hvl.dat250.jpa.tutorial.basicexample.Todo</class>
         <class>no.hvl.dat250.jpa.tutorial.relationshipexample.Person</class>
         <class>no.hvl.dat250.jpa.tutorial.relationshipexample.Family</class>
@@ -29,57 +29,66 @@ implements the JPA specification, making it easier to map Java objects to relati
         <class>no.hvl.dat250.jpa.tutorial.creditcards.CreditCard</class>
         <class>no.hvl.dat250.jpa.tutorial.creditcards.Pincode</class>
         <class>no.hvl.dat250.jpa.tutorial.creditcards.Bank</class>
-<!--
-class: This element explicitly declares an entity class (T0D0) that Hibernate will map to a database table.
-In this case, no.hvl.dat250.jpa.tutorial.basicexample.T0D0 is an entity class, meaning it corresponds to a table in the database.
--->
+        <!--
+        class: This element explicitly declares an entity class (T0D0) that Hibernate will map to a database table.
+        In this case, no.hvl.dat250.jpa.tutorial.basicexample.T0D0 is an entity class, meaning it corresponds to a table in the database.
+        -->
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>
-<!-- hibernate.archive.autodetection=class: This property tells Hibernate to automatically detect entity classes that
-are annotated with @Entity without explicitly listing them in the persistence.xml.
--->
-            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
-            <property name="hibernate.connection.driver_class" value="org.h2.Driver"/>
-<!-- hibernate.dialect: Specifies the SQL dialect that Hibernate should use for generating SQL queries. The dialect
-defines how Hibernate translates HQL (Hibernate Query Language) into the specific SQL syntax of a given database.
-In this case, it uses H2Dialect, meaning the database used is H2, which is an embedded Java database.
-hibernate.connection.driver_class: This defines the JDBC driver class for the H2 database (org.h2.Driver), which is
-necessary for Hibernate to connect to the H2 database.
--->
-            <property name="hibernate.connection.url" value="jdbc:h2:file:./DB;DB_CLOSE_DELAY=-1"/>
-<!-- hibernate.connection.url: This property specifies the JDBC URL for connecting to the H2 database. The URL is
-jdbc:h2:file:./DB, which indicates that:
-The database will be stored as a file in the current directory (./DB).
-DB_CLOSE_DELAY=-1: This ensures that the database will not close automatically when the last connection is closed. It
-keeps the database open even if no active connections are available (which is useful for embedded databases).
--->
+            <!-- hibernate.archive.autodetection=class: This property tells Hibernate to automatically detect entity classes that
+            are annotated with @Entity without explicitly listing them in the persistence.xml.
+            -->
+            <!--<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>-->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:postgresql://127.0.0.1:5432/dbtest"/>
+            <property name="hibernate.connection.username" value="jpa_client"/>
+            <property name="hibernate.connection.password" value="secret"/>
+
+            <!--<property name="hibernate.connection.driver_class" value="org.h2.Driver"/>-->
+            <!-- hibernate.dialect: Specifies the SQL dialect that Hibernate should use for generating SQL queries. The dialect
+            defines how Hibernate translates HQL (Hibernate Query Language) into the specific SQL syntax of a given database.
+            In this case, it uses H2Dialect, meaning the database used is H2, which is an embedded Java database.
+            hibernate.connection.driver_class: This defines the JDBC driver class for the H2 database (org.h2.Driver), which is
+            necessary for Hibernate to connect to the H2 database.
+            -->
+            <!--<property name="hibernate.connection.url" value="jdbc:h2:file:./DB;DB_CLOSE_DELAY=-1"/>-->
+            <!-- hibernate.connection.url: This property specifies the JDBC URL for connecting to the H2 database. The URL is
+            jdbc:h2:file:./DB, which indicates that:
+            The database will be stored as a file in the current directory (./DB).
+            DB_CLOSE_DELAY=-1: This ensures that the database will not close automatically when the last connection is closed. It
+            keeps the database open even if no active connections are available (which is useful for embedded databases).
+            -->
             <property name="hibernate.connection.pool_size" value="1"/>
-<!-- hibernate.connection.pool_size: This sets the size of the database connection pool to 1. Since this is likely a
-simple, local application, the connection pool is kept small. For production, this number would be much higher to
-handle more concurrent database connections.
--->
+            <!-- hibernate.connection.pool_size: This sets the size of the database connection pool to 1. Since this is likely a
+            simple, local application, the connection pool is kept small. For production, this number would be much higher to
+            handle more concurrent database connections.
+            -->
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
-<!-- hibernate.show_sql=false: Disables showing SQL statements in the console during runtime. Setting this to true would
-display the generated SQL statements, which can be useful for debugging.
-hibernate.format_sql=true: Formats the SQL statements for easier readability. Even though show_sql is set to false,
-this setting ensures that if SQL were logged, it would be neatly formatted.
--->
+            <!-- hibernate.show_sql=false: Disables showing SQL statements in the console during runtime. Setting this to true would
+            display the generated SQL statements, which can be useful for debugging.
+            hibernate.format_sql=true: Formats the SQL statements for easier readability. Even though show_sql is set to false,
+            this setting ensures that if SQL were logged, it would be neatly formatted.
+            -->
             <property name="hibernate.hbm2ddl.auto" value="create"/>
-<!-- hibernate.hbm2ddl.auto=create: This property tells Hibernate to automatically generate the database schema.
-In this case, the value create means that the database schema (i.e., tables) will be created from scratch each time the
-application runs. This is useful for development and testing, but in production environments, this value is often set
-to update (for modifying existing tables without dropping them) or validate (to ensure the schema matches but without
-making changes)
--->
+            <!-- hibernate.hbm2ddl.auto=create: This property tells Hibernate to automatically generate the database schema.
+            In this case, the value create means that the database schema (i.e., tables) will be created from scratch each time the
+            application runs. This is useful for development and testing, but in production environments, this value is often set
+            to update (for modifying existing tables without dropping them) or validate (to ensure the schema matches but without
+            making changes)
+            -->
             <property name="webAllowOthers" value="true"/>
+            <property name="jakarta.persistence.schema-generation.scripts.action" value="drop-and-create"/>
+            <property name="jakarta.persistence.schema-generation.scripts.create-target" value="schema.up.sql"/>
+            <property name="jakarta.persistence.schema-generation.scripts.drop-target" value="schema.down.sql"/>
         </properties>
     </persistence-unit>
 </persistence>
 
-<!--
-Database: The application is using an H2 database.
-Database Storage: The database is stored as a file (DB) in the project’s working directory.
-Hibernate Configuration: Hibernate is the JPA provider, and it’s set up to automatically detect and map entities to database tables.
-Schema Generation: The database schema will be recreated each time the application runs, as indicated by hibernate.hbm2ddl.auto=create.
--->
+        <!--
+        Database: The application is using an H2 database.
+        Database Storage: The database is stored as a file (DB) in the project’s working directory.
+        Hibernate Configuration: Hibernate is the JPA provider, and it’s set up to automatically detect and map entities to database tables.
+        Schema Generation: The database schema will be recreated each time the application runs, as indicated by hibernate.hbm2ddl.auto=create.
+        -->

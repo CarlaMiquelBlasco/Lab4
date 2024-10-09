@@ -10,16 +10,16 @@ public class Customer {
     private Long id;
     private String name;
 
-    @ManyToMany
     @JoinTable(name = "customer_addres",
             joinColumns = @JoinColumn(name = "customer_id"),
             inverseJoinColumns = @JoinColumn(name = "address_id")) ///Explicit Join Table for convenience, although it is automatically created.
+    @ManyToMany
     private Set<Address> addresses;
 
-    @ManyToMany
     @JoinTable(name = "customer_creditcard",
             joinColumns = @JoinColumn(name = "customer_id"),
             inverseJoinColumns = @JoinColumn(name = "creditcard_id")) //Explicit Join Table for convenience, although it is automatically created.
+    @ManyToMany
     private Set<CreditCard> creditCards;
 
     public String getName() {
